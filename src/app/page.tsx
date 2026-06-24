@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TrackedLink } from "./track-link";
 
 const nullhypeStructuredData = [
   {
@@ -155,9 +156,11 @@ export default function Home() {
         <section className="border-y border-white/10 bg-neutral-900 px-5 py-12 sm:px-6">
           <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-2">
             {productLinks.map((product) => (
-              <a
+              <TrackedLink
                 key={product.name}
                 href={product.href}
+                event="product_click"
+                eventData={{ product: product.name }}
                 className="group border border-white/10 bg-neutral-950 p-6 transition-colors hover:border-cyan-300/70"
                 target={product.href.startsWith("http") ? "_blank" : undefined}
                 rel={product.href.startsWith("http") ? "noopener noreferrer" : undefined}
@@ -174,7 +177,7 @@ export default function Home() {
                 <span className="mt-6 inline-flex text-sm font-semibold text-cyan-300 group-hover:text-cyan-100">
                   {product.action} -&gt;
                 </span>
-              </a>
+              </TrackedLink>
             ))}
           </div>
         </section>
